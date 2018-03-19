@@ -5,19 +5,31 @@ using UnityEngine.UI;
 
 public class BirdScript : MonoBehaviour
 {
-    //Instance variables
+    //Variables
     public static BirdScript instance;
+
     [SerializeField]
     private Rigidbody2D myRigidBody;
+
     [SerializeField]
     private Animator anim;
+
     private float forwardSpeed = 3f;
+
     [SerializeField]
     private float bounceSpeed = 4f;
+
     public bool didFlap;
+
     public bool isAlive;
 
     private Button flapButton;
+
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip flapClick, pointClip, diedClip;
 
 
     void Awake()
@@ -50,6 +62,7 @@ public class BirdScript : MonoBehaviour
             if (didFlap) {
                 didFlap = false;
                 myRigidBody.velocity = new Vector2(0, bounceSpeed);
+                audioSource.PlayOneShot(flapClick);
                 anim.SetTrigger("Flap");//tied to trigger in animator
             }
             //controls the birds direction based on velocity
@@ -76,5 +89,27 @@ public class BirdScript : MonoBehaviour
     //function for checking if the bird is flapping
     public void FlapTheBird() {
         didFlap = true;
+    }
+    //this function is called if the bird touches a pipe or the ground
+    void OnCollisionEnter2D(Collision2D target)
+    {
+        if (target.gameObject.tag == "Ground" || target.gameObject.tag == "Pipe")
+        {
+            if (isAlive)
+            {
+                isAlive = false;
+                anim.SetTrigger("Bird Died");
+                audioSource.PlayOneShot(diedClip);
+                
+            }
+        }
+    }
+    //this function is called each time the bird passes through the pipholder collider
+    void OnTriggerEnter2D(Collider2D target)
+    {
+        if (target.tag == "PipeHolder")
+        {
+           audioSource.PlayOneShot(pointClip);
+        }
     }
 }
