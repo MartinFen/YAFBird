@@ -6,18 +6,18 @@ public class GameController : MonoBehaviour {
 
     public static GameController instance;
     private const string HIGH_SCORE = "High Score";
-    private const string SELECTED_BIRD = "Selected Bird";
 
-    // Use this for initialization
-    void Start () {
+    void Awake()
+    {
         MakeSingleton();
         IsTheGameStartedForTheFirstTime();
     }
+
+    // Use this for initialization
+    void Start () {
+        
+    }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
     //this function checks if the game controller object is null and if it is destroy the object or else dont
     void MakeSingleton()
     {

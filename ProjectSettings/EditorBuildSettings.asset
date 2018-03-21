@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 284b6e0d7da33f74190e23d4312f5411
+  - enabled: 1
+    path: Assets/Scenes/FlappyBird.unity
+    guid: bcf3f6b142b1a7c4088ab7cb10509546
