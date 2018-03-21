@@ -16,7 +16,6 @@ public class BirdScript : MonoBehaviour
 
     private float forwardSpeed = 3f;
 
-    [SerializeField]
     private float bounceSpeed = 4f;
 
     public bool didFlap;
@@ -30,6 +29,8 @@ public class BirdScript : MonoBehaviour
 
     [SerializeField]
     private AudioClip flapClick, pointClip, diedClip;
+
+    public int score;
 
 
     void Awake()
@@ -77,11 +78,12 @@ public class BirdScript : MonoBehaviour
         }
     }
 
-    //
+    //this function is used to set the cameras location
     void SetCamerasX() {
         CameraScript.offsetX = (Camera.main.transform.position.x - transform.position.x) - 1f;
     }
 
+    //this getter is used for the birds location
     public float GetPositionX() {
         return transform.position.x;
     }
@@ -90,7 +92,7 @@ public class BirdScript : MonoBehaviour
     public void FlapTheBird() {
         didFlap = true;
     }
-    //this function is called if the bird touches a pipe or the ground
+    //this function is called if the bird dies by hitting a pipe or the ground
     void OnCollisionEnter2D(Collision2D target)
     {
         if (target.gameObject.tag == "Ground" || target.gameObject.tag == "Pipe")
@@ -100,7 +102,6 @@ public class BirdScript : MonoBehaviour
                 isAlive = false;
                 anim.SetTrigger("Bird Died");
                 audioSource.PlayOneShot(diedClip);
-                
             }
         }
     }
