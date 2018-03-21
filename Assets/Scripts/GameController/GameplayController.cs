@@ -74,11 +74,11 @@ public class GameplayController : MonoBehaviour {
     public void RestartGame()
     {
         // get the current scene name 
-        //string sceneName = SceneManager.GetActiveScene().name;
+        string sceneName = SceneManager.GetActiveScene().name;
 
         // load the same scene
-        //SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
-        SceneFader.instance.FadeIn("FlappyBird");
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        //SceneFader.instance.FadeIn("FlappyBird");
     }
 
     public void PlayGame()
