@@ -11,6 +11,11 @@ public class GameplayController : MonoBehaviour {
     [SerializeField]
     private Text scoreText, endScore, bestScore, gameOverText;
 
+    const string privateCode = "-KiZMx0rdEe0YbNIv0FTFw9niEkJBgI0qIZos78pjT9Q"; //private key for leaderboard
+    const string publicCode = "5abb8054012b2e1068d5c879"; //public key for leaderboard
+    const string webURL = "http://dreamlo.com/lb/"; //weburl address
+    private string username = "";
+
     [SerializeField]
     private Button restartGameButton, instructionsButton;
 
@@ -29,17 +34,30 @@ public class GameplayController : MonoBehaviour {
         Time.timeScale = 0f;
     }
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
 
     void MakeInstance()
     {
         if (instance == null)
         {
             instance = this;
+        }
+    }
+
+    public void AddNewHighscore(string username, int score)
+    {
+        StartCoroutine(UploadNewHighscore(username, score));
+    }
+
+    IEnumerator UploadNewHighscore(string username, int score)
+    {
+        WWW www = new WWW(webURL + privateCode + "/add/" + WWW.EscapeURL(username) + "/" + score);
+        yield return www;
+
+        if (string.IsNullOrEmpty(www.error))
+            print("Upload Successful");
+        else
+        {
+            print("Error uploading: " + www.error);
         }
     }
 
@@ -99,8 +117,13 @@ public class GameplayController : MonoBehaviour {
         gameOverText.gameObject.SetActive(true);
         scoreText.gameObject.SetActive(false);
 
+        AddNewHighscore("Martin", score);//adds score online
+        AddNewHighscore("MF", 20);
+        AddNewHighscore("LR", 21);
+
         endScore.text = "" + score;
 
+        //update high score if beaten
         if (score > GameController.instance.GetHighscore())
         {
             GameController.instance.SetHighscore(score);

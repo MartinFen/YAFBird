@@ -13,12 +13,7 @@ public class GameController : MonoBehaviour {
         IsTheGameStartedForTheFirstTime();
     }
 
-    // Use this for initialization
-    void Start () {
-        
-    }
-	
-    //this function checks if the game controller object is null and if it is destroy the object or else dont
+    //this function checks if the game controller object is not null and if it isnt destroy the object or else dont
     void MakeSingleton()
     {
         if (instance != null)
@@ -31,7 +26,8 @@ public class GameController : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
         }
     }
-    //this function is used to 
+
+    //this function is used to check if its the first time the player has run the game and if it is it sets the high score to 0
     void IsTheGameStartedForTheFirstTime()
     {
         if (!PlayerPrefs.HasKey("IsTheGameStartedForTheFirstTime"))
@@ -43,11 +39,11 @@ public class GameController : MonoBehaviour {
 
     public void SetHighscore(int score)
     {
-        PlayerPrefs.SetInt(HIGH_SCORE, score);
+        PlayerPrefs.SetInt(HIGH_SCORE, score);//sets the score
     }
 
     public int GetHighscore()
     {
-        return PlayerPrefs.GetInt(HIGH_SCORE);
+        return PlayerPrefs.GetInt(HIGH_SCORE);//gets high score
     }
 }
