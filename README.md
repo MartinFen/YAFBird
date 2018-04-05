@@ -17,12 +17,15 @@ This repo contains the source for my unity3D project which is a [flappy bird](ht
 ## Technology Used
 ### UWP 
 ![](https://docs.microsoft.com/en-us/windows/uwp/get-started/images/universalapps-overview.png)
+
 [Universal Windows Platform](https://en.wikipedia.org/wiki/Universal_Windows_Platform) (UWP) is a platform-homogeneous application architecture created by Microsoft that ties all devices that use windows 10 and windows 10 mobile together under one platform and was first introduced before Windows 10 was relased. The purpose of this software platform is to help develop universal apps that run on Windows 10, Windows 10 Mobile, Xbox One and Hololens without the need to be re-written for each system. It supports Windows app development using C++, C#, VB.NET, and XAML. The API is implemented in C++, and supported in C++, VB.NET, C#, F# and JavaScript. Designed as an extension to the Windows Runtime platform first introduced in Windows Server 2012 and Windows 8, UWP allows developers to create apps that will potentially run on multiple types of devices.
 ### Dreamlo
 ![](https://raw.githubusercontent.com/gtonra89/UnityGame-UWP/master/dreamlo.png)
+
 [Dreamlo](http://dreamlo.com/developer) is an online leaderboard website that can link a private leaderoard to an application using public and private keys. All communication with the server is done through simple HTTP GET requests. Every leaderboard has a private URL for adding/deleting scores. This can be compiled in your code. For your website you can use a public URL wich has read access only.
 ### Unity 
 ![](https://raw.githubusercontent.com/gtonra89/UnityGame-UWP/master/blog_thumb_unity.jpg)
+
 [Unity3D](https://unity3d.com/) is a cross-platform game engine developed by Unity Technologies which is primarily used to develop video games and simulation apps, for several platforms across devices like computers, consoles and mobiles. The language used to develop the games is C# which is one of the most popular laguages used in the world today for developing apps.
 ## References
 - [Stack Overflow](https://stackoverflow.com/)
