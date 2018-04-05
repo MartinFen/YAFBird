@@ -8,13 +8,14 @@ public class Highscores : MonoBehaviour
     const string publicCode = "5abb8054012b2e1068d5c879"; //public key for leaderboard
     const string webURL = "http://dreamlo.com/lb/"; //weburl address
 
-    //DisplayHighscores Display;
+    DisplayHighScores Display;
     public Highscore[] highScoresList;
     static Highscores instance;
 
     void Awake()
     {
-        DownloadHighscores();
+        Display = GetComponent<DisplayHighScores>();
+        instance = this;
     }
 
     public void DownloadHighscores()
@@ -31,8 +32,7 @@ public class Highscores : MonoBehaviour
         if (string.IsNullOrEmpty(www.error))
         {
             Format(www.text);
-
-            //Display.OnHighscoresDownloaded(list);
+            Display.OnHighscoresDownloaded(highScoresList);
         }
         else
         {
@@ -67,4 +67,5 @@ public class Highscores : MonoBehaviour
             score = _score;
         }
     }
+
 }

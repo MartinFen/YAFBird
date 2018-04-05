@@ -6,9 +6,10 @@ public class GameController : MonoBehaviour {
 
     public static GameController instance;
     private const string HIGH_SCORE = "High Score";
-
+    
     void Awake()
     {
+        //PlayerPrefs.DeleteAll();
         MakeSingleton();
         IsTheGameStartedForTheFirstTime();
     }
