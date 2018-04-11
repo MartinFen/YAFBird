@@ -37,12 +37,13 @@ public class GameController : MonoBehaviour {
             PlayerPrefs.SetInt("IsTheGameStartedForTheFirstTime", 0);
         }
     }
-
+    //sets high score
     public void SetHighscore(int score)
     {
         PlayerPrefs.SetInt(HIGH_SCORE, score);//sets the score
     }
 
+    //gets high score
     public int GetHighscore()
     {
         return PlayerPrefs.GetInt(HIGH_SCORE);//gets high score

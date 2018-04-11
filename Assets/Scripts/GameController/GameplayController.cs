@@ -31,10 +31,13 @@ public class GameplayController : MonoBehaviour {
     [SerializeField]
     private InputField inputField;
 
+    //runs when class starts
     void Awake()
     {
         MakeInstance();
         Time.timeScale = 0f;
+        //when the user has finished entering user name at the end of game screen panel 
+        //and clicks out of the input field the users name will be added to the data to be uploaded to dreamlo
         inputField.onEndEdit.AddListener(delegate {
             SetUsername();
         });
@@ -48,6 +51,7 @@ public class GameplayController : MonoBehaviour {
         }
     }
 
+    // called when the user pauses the game during gameplay
     public void PauseGame()
     {
         if (BirdScript.instance != null)
@@ -55,12 +59,13 @@ public class GameplayController : MonoBehaviour {
             if (BirdScript.instance.isAlive)
             {
                 pausePanel.SetActive(true);
+                // the scores are added to the text in the panel
                 gameOverText.gameObject.SetActive(false);
                 endScore.text = "" + BirdScript.instance.score;
                 bestScore.text = "" + GameController.instance.GetHighscore();
                 Time.timeScale = 0f;
                 restartGameButton.onClick.RemoveAllListeners();
-                restartGameButton.onClick.AddListener(() => ResumeGame());
+                restartGameButton.onClick.AddListener(() => ResumeGame());// calls resume game
             }
         }
     }
@@ -101,12 +106,14 @@ public class GameplayController : MonoBehaviour {
         scoreText.text = "" + score;
     }
 
+    // when called the users name and score are uploaded to leader board
+    // see awake function in class
     public void SetUsername()
     {
         //Debug.Log("Input: " + inputField.text);
         AddNewHighscore(inputField.text, BirdScript.instance.score);
     }
-
+    //when called uses IEnumerator below
     public void AddNewHighscore(string username, int score)
     {
         StartCoroutine(UploadNewHighscore(username, score));
@@ -157,6 +164,6 @@ public class GameplayController : MonoBehaviour {
         }
 
         restartGameButton.onClick.RemoveAllListeners();
-        restartGameButton.onClick.AddListener(() => RestartGame());
+        restartGameButton.onClick.AddListener(() => RestartGame());//if player clicks resume game a new game is started
     }
 }

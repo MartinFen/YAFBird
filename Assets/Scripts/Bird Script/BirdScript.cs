@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class BirdScript : MonoBehaviour
 {
-    //Variables
     public static BirdScript instance;
 
     [SerializeField]

@@ -12,17 +12,18 @@ public class Highscores : MonoBehaviour
     public Highscore[] highScoresList;
     static Highscores instance;
 
+    //when the class runs the awake function gets the high scores from dreamlo and ads it to Display
     void Awake()
     {
         Display = GetComponent<DisplayHighScores>();
         instance = this;
     }
-
+    //this function calls the below IEnumerator
     public void DownloadHighscores()
     {
         StartCoroutine("DownloadFromDatabase");
     }
-
+    //when called this IEnumerator will retrive the high scores from dreamlo
     IEnumerator DownloadFromDatabase()
     {
         // Get your data as pipe delimited providing the address url and the pulic code
@@ -40,6 +41,7 @@ public class Highscores : MonoBehaviour
         }
     }
 
+    //this function splits up the high scores into username & score which are added to a list
     void Format(string textStream)
     {
         string[] entries = textStream.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
@@ -55,7 +57,7 @@ public class Highscores : MonoBehaviour
             print(highScoresList[i].username + ": " + highScoresList[i].score);
         }
     }
-
+    //struct that contains two values string & int as well as a method used in the above function
     public struct Highscore
     {
         public string username;
